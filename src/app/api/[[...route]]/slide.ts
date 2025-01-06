@@ -4,7 +4,7 @@ const app = new Hono<{ Bindings: CloudflareEnv }>();
 
 app.get("list", async (c) => {
     let keys = [];
-    const bucket = process.env.SLIDES as unknown as R2Bucket;
+    const bucket = c.env.SLIDES;
     const time = new Date().getTime();
     console.log("List getting");
     try {
