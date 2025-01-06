@@ -1,17 +1,32 @@
 import { Hono } from "hono";
+import { S3Client, ListObjectsV2Command, GetObjectCommand } from "@aws-sdk/client-s3";
+import { Readable } from "stream";
 
 const app = new Hono<{ Bindings: CloudflareEnv }>();
 
+const s3Client = new S3Client({
+    region: process.env.S3_REGION!,
+    credentials: {
+        accessKeyId: process.env.S3_ACCESS_ID!,
+        secretAccessKey: process.env.S3_SECRET_KEY!,
+    },
+    endpoint: process.env.S3_ENDPOINT,
+});
+
 app.get("list", async (c) => {
     let keys = [];
-    const bucket = c.env.SLIDES;
+    const bucketName = process.env.S3_BUCKET;
     const time = new Date().getTime();
     console.log("List getting");
     try {
-        const listResult = await bucket.list({ prefix: "", delimiter: "/" });
-        keys = listResult.delimitedPrefixes.map((delimiter) =>
-            delimiter.replace("/", ""),
-        );
+        const listResult = await s3Client.send(new ListObjectsV2Command({
+            Bucket: bucketName,
+            Prefix: "",
+            Delimiter: "/"
+        }));
+        keys = listResult.CommonPrefixes?.map((prefix) =>
+            prefix.Prefix?.replace("/", ""),
+        ) ?? [];
     } catch (error) {
         console.error(error);
         return new Response(error?.toString(), { status: 500 });
@@ -29,19 +44,29 @@ app.get("list", async (c) => {
         await Promise.all(
             keys.map(async (key) => {
                 const id = key as string;
-                let object = await bucket.get(`${id}/index.html`);
-                if (object === undefined) {
-                    // skip
+                let object;
+                try {
+                    object = await s3Client.send(new GetObjectCommand({
+                        Bucket: bucketName,
+                        Key: `${id}/index.html`
+                    }));
+                } catch (error) {
+                    // skip if object not found
                     return null;
                 }
-                object = object as R2ObjectBody;
-                const html = (await object?.text()) as string;
+                const stream = object.Body as Readable;
+                const html = await new Promise<string>((resolve, reject) => {
+                    let data = "";
+                    stream.on("data", (chunk) => (data += chunk));
+                    stream.on("end", () => resolve(data));
+                    stream.on("error", reject);
+                });
                 const title = (
                     html.match(/<title>(.*?)<\/title>/)?.[1] as string
                 ).split(" - ")[0] as string;
                 const image = `https://${process.env.NEXT_PUBLIC_S3_HOST_NAME}/${id}/picture/1.png`;
                 const link = `https://${process.env.NEXT_PUBLIC_S3_HOST_NAME}/${id}/index.html`;
-                const lastUpdate = new Date(object.uploaded);
+                const lastUpdate = object.LastModified;
 
                 return { id, title: title, image, link, lastUpdate };
             }),
