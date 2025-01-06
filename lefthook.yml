@@ -1,0 +1,20 @@
+prepare-commit-msg:
+  parallel: true
+  scripts:
+    'commitizen.sh':
+      interactive: true
+      runner: sh
+
+pre-commit:
+  parallel: true
+  commands:
+    biome-check:
+      glob: "src/**/*.{js,ts,jsx,tsx}"
+      run: pnpm dlx @biomejs/biome check --write {staged_files}
+
+add:
+  parallel: true
+  commands:
+    biome-check:
+      glob: "src/**/*.{js,ts,jsx,tsx}"
+      run: pnpm dlx @biomejs/biome check --write {staged_files}
