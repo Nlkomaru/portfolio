@@ -1,14 +1,19 @@
+import type { Readable } from "node:stream";
+import {
+    GetObjectCommand,
+    type GetObjectCommandOutput,
+    ListObjectsV2Command,
+    S3Client,
+} from "@aws-sdk/client-s3";
 import { Hono } from "hono";
-import { S3Client, ListObjectsV2Command, GetObjectCommand } from "@aws-sdk/client-s3";
-import { Readable } from "stream";
 
 const app = new Hono<{ Bindings: CloudflareEnv }>();
 
 const s3Client = new S3Client({
-    region: process.env.S3_REGION!,
+    region: process.env.S3_REGION || "",
     credentials: {
-        accessKeyId: process.env.S3_ACCESS_ID!,
-        secretAccessKey: process.env.S3_SECRET_KEY!,
+        accessKeyId: process.env.S3_ACCESS_ID || "",
+        secretAccessKey: process.env.S3_SECRET_KEY || "",
     },
     endpoint: process.env.S3_ENDPOINT,
 });
@@ -19,14 +24,17 @@ app.get("list", async (c) => {
     const time = new Date().getTime();
     console.log("List getting");
     try {
-        const listResult = await s3Client.send(new ListObjectsV2Command({
-            Bucket: bucketName,
-            Prefix: "",
-            Delimiter: "/"
-        }));
-        keys = listResult.CommonPrefixes?.map((prefix) =>
-            prefix.Prefix?.replace("/", ""),
-        ) ?? [];
+        const listResult = await s3Client.send(
+            new ListObjectsV2Command({
+                Bucket: bucketName,
+                Prefix: "",
+                Delimiter: "/",
+            }),
+        );
+        keys =
+            listResult.CommonPrefixes?.map((prefix) =>
+                prefix.Prefix?.replace("/", ""),
+            ) ?? [];
     } catch (error) {
         console.error(error);
         return new Response(error?.toString(), { status: 500 });
@@ -44,12 +52,14 @@ app.get("list", async (c) => {
         await Promise.all(
             keys.map(async (key) => {
                 const id = key as string;
-                let object;
+                let object: GetObjectCommandOutput;
                 try {
-                    object = await s3Client.send(new GetObjectCommand({
-                        Bucket: bucketName,
-                        Key: `${id}/index.html`
-                    }));
+                    object = await s3Client.send(
+                        new GetObjectCommand({
+                            Bucket: bucketName,
+                            Key: `${id}/index.html`,
+                        }),
+                    );
                 } catch (error) {
                     // skip if object not found
                     return null;
@@ -57,7 +67,9 @@ app.get("list", async (c) => {
                 const stream = object.Body as Readable;
                 const html = await new Promise<string>((resolve, reject) => {
                     let data = "";
-                    stream.on("data", (chunk) => (data += chunk));
+                    stream.on("data", (chunk) => {
+                        data += chunk;
+                    });
                     stream.on("end", () => resolve(data));
                     stream.on("error", reject);
                 });

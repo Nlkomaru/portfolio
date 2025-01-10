@@ -3,12 +3,19 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: 'https',
+                protocol: "https",
                 hostname: `${process.env.NEXT_PUBLIC_S3_HOST_NAME}`,
-                port: '',
-                pathname: '/**',
-            }],
-    }
+                port: "",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "picsum.photos",
+                port: "",
+                pathname: "/**",
+            },
+        ],
+    },
 };
 
 export default nextConfig;

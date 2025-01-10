@@ -88,7 +88,7 @@ export const HamburgerMenu = () => {
                                                         fontWeight: 300,
                                                         lineHeight:
                                                             "16px /* 100% */",
-                                                        color: "var(--colors-accents-green-8, #5BB98B)",
+                                                        color: "var(--colors-color-palette-8)",
                                                     })}
                                                 >
                                                     {item.label}
