@@ -1,7 +1,7 @@
-import {css} from "@/styled-system/css";
-import {ArrowRight} from "lucide-react";
+import { css } from "@/styled-system/css";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import {Text} from "~/components/ui/text";
+import { Text } from "~/components/ui/text";
 
 export const AboutMe = () => {
     return (
@@ -21,15 +21,12 @@ export const AboutMe = () => {
                         md: "24px",
                         lg: "32px",
                     },
-                    marginBottom: "8px"
+                    marginBottom: "8px",
                 })}
             >
                 About Me
             </h1>
-            <Text
-                as="p"
-
-            >
+            <Text as="p">
                 信州大学工学部電子情報システム工学科情報システムプログラム在学中。ものづくりへの興味から、工業高校に進学し、電子工学を学びました。
                 また、高校在学時には、ネットワークやプログラミングなどに興味を持ち、資格取得などを行いました。
                 これらの経験を通じてコンピュータサイエンスに強く興味を抱き、大学に進学。

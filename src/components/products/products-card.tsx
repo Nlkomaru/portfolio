@@ -1,14 +1,14 @@
-import {css} from "@/styled-system/css";
+import { css } from "@/styled-system/css";
 import Image from "next/image";
 import Link from "next/link";
-import React, {useEffect, useState} from "react";
-import {Card} from "../ui/card";
+import React, { useEffect, useState } from "react";
+import { Card } from "../ui/card";
 
 type Params = {
     product: Product;
 };
 
-export default function ProductsCard({product}: Params) {
+export default function ProductsCard({ product }: Params) {
     const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
@@ -16,7 +16,9 @@ export default function ProductsCard({product}: Params) {
     }, []);
 
     const renderImage = () => {
-        const aspectRatio = product.image ? product.image.width / product.image.height : 1;
+        const aspectRatio = product.image
+            ? product.image.width / product.image.height
+            : 1;
 
         const imageStyle = css({
             aspectRatio: `${aspectRatio}`,
@@ -35,11 +37,7 @@ export default function ProductsCard({product}: Params) {
         });
 
         if (!product.image) {
-            return (
-                <div className={imageStyle}>
-                    {product.emoji}
-                </div>
-            );
+            return <div className={imageStyle}>{product.emoji}</div>;
         }
         return (
             <div className={imageStyle}>

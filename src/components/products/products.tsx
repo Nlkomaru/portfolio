@@ -25,7 +25,7 @@ export default function Home() {
                         md: "24px",
                         lg: "32px",
                     },
-                    marginBottom: "8px"
+                    marginBottom: "8px",
                 })}
             >
                 Products
