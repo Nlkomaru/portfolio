@@ -1,24 +1,23 @@
 "use client";
-import type { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
+import {css} from "@/styled-system/css";
+import type {EmblaCarouselType, EmblaOptionsType} from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import type React from "react";
-import { useCallback } from "react";
+import {useCallback, useEffect, useState} from "react";
+import ProductsCard from "~/components/products/products-card";
 import {
     NextButton,
     PrevButton,
     usePrevNextButtons,
 } from "./embla-carousel-arrow-buttons";
 
-import { css } from "@/styled-system/css";
-import ProductsCard from "~/components/products/products-card";
-import { getProducts } from "~/lib/products";
-
 const embla = css({
     margin: "auto",
     "--slide-height": "19rem",
     "--slide-spacing": "1rem",
-    "--slide-size": "33%",
+    "--slide-size": {base: "100%", md: "50%", lg: "33%"},
+    maxWidth: "1536px",
 });
 
 const emblaViewport = css({
@@ -60,10 +59,21 @@ type PropType = {
 };
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-    const { options } = props;
+    const {options} = props;
     const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-        Autoplay({ delay: 20 * 1000 }),
+        Autoplay({delay: 20 * 1000}),
     ]);
+    const [data, setData] = useState<Product[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch("/api/products");
+            const result = await response.json<Product[]>();
+            setData(result);
+        };
+
+        fetchData();
+    }, []);
 
     const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
         const autoplay = emblaApi?.plugins()?.autoplay;
@@ -88,9 +98,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <section className={embla}>
             <div className={emblaViewport} ref={emblaRef}>
                 <div className={emblaContainer}>
-                    {getProducts().map((products) => (
-                        <div className={emblaSlide} key={products.id}>
-                            <ProductsCard product={products} />
+                    {data.map((product) => (
+                        <div className={emblaSlide} key={product.id}>
+                            <ProductsCard product={product}/>
                         </div>
                     ))}
                 </div>

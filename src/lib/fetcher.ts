@@ -4,7 +4,7 @@ export async function fetcher(
     url: string,
     options?: RequestInit<CfProperties<unknown>> | undefined,
 ) {
-    const headersData = headers();
+    const headersData = await headers();
     const host = headersData.get("host");
     if (!host) {
         throw new Error("Host header is missing");

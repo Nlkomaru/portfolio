@@ -1,1 +1,3 @@
+@import url("https://tetunori.github.io/fluent-emoji-webfont/dist/FluentEmojiColor.css");
+
 @layer reset, base, tokens, recipes, utilities;

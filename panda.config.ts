@@ -11,7 +11,7 @@ export const textStyles = defineTextStyles({
     body: {
         description: "The body text style - used in paragraphs",
         value: {
-            fontFamily: "var(--font-poppins), var(--font-zen-maru-gothic)",
+            fontFamily: "Fluent Emoji Color, var(--font-poppins), var(--font-zen-maru-gothic)",
             fontSize: {
                 base: "sm",
                 md: "md",

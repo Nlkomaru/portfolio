@@ -13,7 +13,13 @@ const nextConfig = {
                 hostname: "picsum.photos",
                 port: "",
                 pathname: "/**",
+            },{
+                protocol: "https",
+                hostname: "images.microcms-assets.io",
+                port: "",
+                pathname: "/**",
             },
+
         ],
     },
 };

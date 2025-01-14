@@ -7,17 +7,18 @@ interface Slide {
 }
 
 interface Product {
-    imageType: "smartphone" | "desktop" | "emoji";
-    image: SmartphoneImage | DesktopImage | Emoji;
     id: string;
     title: string;
-    description: string;
-    persona: {
-        client: string;
-        target: string;
-        problem: string | null;
-        position: string;
+    image: {
+        url: string;
+        width: number;
+        height: number;
     };
+    emoji: string;
+    description: string;
+    client: string;
+    position: string;
+    link: string;
 }
 
 interface SmartphoneImage {
