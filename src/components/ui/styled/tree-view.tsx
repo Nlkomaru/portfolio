@@ -1,9 +1,9 @@
 'use client'
-import type { Assign } from '@ark-ui/react'
-import { type TreeNode, TreeView } from '@ark-ui/react/tree-view'
-import { type TreeViewVariantProps, treeView } from 'styled-system/recipes'
-import type { ComponentProps, HTMLStyledProps } from 'styled-system/types'
-import { createStyleContext } from './utils/create-style-context'
+import type {Assign} from '@ark-ui/react'
+import {type TreeNode, TreeView} from '@ark-ui/react/tree-view'
+import {type TreeViewVariantProps, treeView } from 'styled-system/recipes'
+import type {ComponentProps, HTMLStyledProps} from 'styled-system/types'
+import {createStyleContext} from './utils/create-style-context'
 
 const { withProvider, withContext } = createStyleContext(treeView)
 

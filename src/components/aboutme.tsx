@@ -14,18 +14,7 @@ export const AboutMe = () => {
                 maxWidth: "1600px",
             })}
         >
-            <h1
-                className={css({
-                    fontSize: {
-                        base: "20px",
-                        md: "24px",
-                        lg: "32px",
-                    },
-                    marginBottom: "8px",
-                })}
-            >
-                About Me
-            </h1>
+            <h1 className={titleStyle}>About Me</h1>
             <Text as="p">
                 信州大学工学部電子情報システム工学科情報システムプログラム在学中。ものづくりへの興味から、工業高校に進学し、電子工学を学びました。
                 また、高校在学時には、ネットワークやプログラミングなどに興味を持ち、資格取得などを行いました。
@@ -36,13 +25,13 @@ export const AboutMe = () => {
 
             {/* 詳しくはこちら*/}
             <Link
-                href={"/about"}
+                href={"/about-me"}
                 className={css({
                     display: "flex",
                     alignItems: "center",
                     gap: "10px",
                     marginTop: {
-                        base: "16px",
+                        base: "32px",
                     },
                 })}
                 aria-label={"私について詳しく"}
@@ -67,3 +56,12 @@ export const AboutMe = () => {
         </div>
     );
 };
+
+export const titleStyle = css({
+    fontSize: {
+        base: "20px",
+        md: "24px",
+        lg: "32px",
+    },
+    marginBottom: "8px",
+});

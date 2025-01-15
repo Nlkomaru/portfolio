@@ -1,10 +1,10 @@
 'use client'
-import type { Assign, PolymorphicProps } from '@ark-ui/react'
-import { Dialog } from '@ark-ui/react/dialog'
-import { ark } from '@ark-ui/react/factory'
-import { type DrawerVariantProps, drawer } from 'styled-system/recipes'
-import type { ComponentProps, HTMLStyledProps } from 'styled-system/types'
-import { createStyleContext } from './utils/create-style-context'
+import type {Assign, PolymorphicProps} from '@ark-ui/react'
+import {Dialog} from '@ark-ui/react/dialog'
+import {ark} from '@ark-ui/react/factory'
+import {type DrawerVariantProps, drawer } from 'styled-system/recipes'
+import type {ComponentProps, HTMLStyledProps} from 'styled-system/types'
+import {createStyleContext} from './utils/create-style-context'
 
 const { withRootProvider, withContext } = createStyleContext(drawer)
 

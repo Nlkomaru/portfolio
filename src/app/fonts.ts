@@ -1,9 +1,7 @@
 import {
-    BIZ_UDGothic,
     M_PLUS_1p,
     Montserrat,
     Montserrat_Alternates,
-    Noto_Sans_JP,
     Poppins,
     Zen_Maru_Gothic,
 } from "next/font/google";

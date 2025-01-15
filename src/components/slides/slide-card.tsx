@@ -1,7 +1,6 @@
 import { css } from "@/styled-system/css";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { Card } from "../ui/card";
 
 const SlideCard = (props: { slide: Slide }) => {
@@ -81,7 +80,10 @@ const SlideCard = (props: { slide: Slide }) => {
                         },
                     })}
                 >
-                    最終更新日: {slide.lastUpdate?.toISOString().split("T")[0]}
+                    最終更新日:{" "}
+                    {slide.lastUpdate
+                        ? new Date(slide.lastUpdate).toISOString().split("T")[0]
+                        : "N/A"}
                 </Card.Footer>
             </Card.Root>
         </Link>

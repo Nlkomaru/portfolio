@@ -1,5 +1,5 @@
-import { forwardRef } from 'react'
-import { Input } from './input'
+import {forwardRef} from 'react'
+import {Input} from './input'
 import * as StyledPinInput from './styled/pin-input'
 
 export interface PinInputProps extends StyledPinInput.RootProps {

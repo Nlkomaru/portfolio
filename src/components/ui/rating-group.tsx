@@ -1,5 +1,5 @@
 'use client'
-import { forwardRef } from 'react'
+import {forwardRef} from 'react'
 import * as StyledRatingGroup from './styled/rating-group'
 
 export interface RatingGroupProps extends StyledRatingGroup.RootProps {}

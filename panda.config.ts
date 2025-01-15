@@ -11,13 +11,13 @@ export const textStyles = defineTextStyles({
     body: {
         description: "The body text style - used in paragraphs",
         value: {
-            fontFamily: "Fluent Emoji Color, var(--font-poppins), var(--font-zen-maru-gothic)",
+            fontFamily: "var(--font-poppins), var(--font-zen-maru-gothic), Fluent Emoji Color",
             fontSize: {
                 base: "sm",
                 md: "md",
                 lg: "lg",
             },
-            lineHeight: "1.75",
+            lineHeight: "2",
             fontWeight: "400",
         },
     },

@@ -10,7 +10,7 @@ import {
     NextButton,
     PrevButton,
     usePrevNextButtons,
-} from "./embla-carousel-arrow-buttons";
+} from "./products-carousel-arrow-buttons";
 
 const embla = css({
     margin: "auto",
@@ -58,7 +58,7 @@ type PropType = {
     options?: EmblaOptionsType;
 };
 
-const EmblaCarousel: React.FC<PropType> = (props) => {
+const ProductsCarousel: React.FC<PropType> = (props) => {
     const { options } = props;
     const [emblaRef, emblaApi] = useEmblaCarousel(options, [
         Autoplay({ delay: 20 * 1000 }),
@@ -122,4 +122,4 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     );
 };
 
-export default EmblaCarousel;
+export default ProductsCarousel;

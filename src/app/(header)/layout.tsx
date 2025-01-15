@@ -1,7 +1,6 @@
 import { css } from "@/styled-system/css";
 import { Footer } from "~/components/footer";
 import { Header } from "~/components/header/header";
-import { Logo } from "~/components/header/logo";
 import Scene from "~/components/scene";
 
 export default function Layout({

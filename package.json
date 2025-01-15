@@ -10,11 +10,12 @@
         "build:worker": "opennextjs-cloudflare",
         "start": "next start",
         "start:worker": "pnpm run build:worker && wrangler dev --port 8771",
+        "preview": "pnpm run build && next start",
+        "preview:workers": "pnpm run build:worker && wrangler dev",
         "lint": "biome lint --write ./src",
         "format": "biome format --write ./src",
         "check": "biome check ./src --write",
         "deploy": "pnpm run build:worker && wrangler deploy",
-        "preview": "pnpm run build:worker && wrangler dev",
         "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
     },
     "dependencies": {

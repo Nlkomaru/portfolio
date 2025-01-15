@@ -1,15 +1,14 @@
 import { css } from "@/styled-system/css";
 import { Menu as MenuIcon, XIcon } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 import { Drawer } from "../ui/drawer";
 
 export const HamburgerMenu = () => {
     const data = [
-        { url: "/blog", name: "書いたぶろぐ", label: "Blog" },
+        // { url: "/blog", name: "書いたぶろぐ", label: "Blog" },
         { url: "/slides", name: "つくったスライド", label: "Slides" },
         { url: "/products", name: "作ったもの", label: "Products" },
-        { url: "/about", name: "わたしについて", label: "About" },
+        { url: "/about-me", name: "わたしについて", label: "About" },
     ];
     return (
         <div>

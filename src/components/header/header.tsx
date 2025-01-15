@@ -1,8 +1,6 @@
 import { css } from "@/styled-system/css";
 import { HamburgerMenu } from "~/components/header/menu";
-import { Navbar } from "~/components/header/navbar";
 import { Logo } from "./logo";
-import { Title } from "./title";
 
 export const Header = () => {
     return (

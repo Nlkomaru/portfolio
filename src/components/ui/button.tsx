@@ -1,7 +1,7 @@
-import { forwardRef } from 'react'
-import { Center, styled } from 'styled-system/jsx'
-import { Spinner } from './spinner'
-import { Button as StyledButton, type ButtonProps as StyledButtonProps } from './styled/button'
+import {forwardRef} from 'react'
+import {Center, styled} from 'styled-system/jsx'
+import {Spinner} from './spinner'
+import {Button as StyledButton, type ButtonProps as StyledButtonProps} from './styled/button'
 
 interface ButtonLoadingProps {
   loading?: boolean

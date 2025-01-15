@@ -1,9 +1,9 @@
 'use client'
-import type { Assign } from '@ark-ui/react'
-import { Switch } from '@ark-ui/react/switch'
-import { type SwitchRecipeVariantProps, switchRecipe } from 'styled-system/recipes'
-import type { ComponentProps, HTMLStyledProps } from 'styled-system/types'
-import { createStyleContext } from './utils/create-style-context'
+import type {Assign} from '@ark-ui/react'
+import {Switch} from '@ark-ui/react/switch'
+import {type SwitchRecipeVariantProps, switchRecipe } from 'styled-system/recipes'
+import type {ComponentProps, HTMLStyledProps} from 'styled-system/types'
+import {createStyleContext} from './utils/create-style-context'
 
 const { withProvider, withContext } = createStyleContext(switchRecipe)
 

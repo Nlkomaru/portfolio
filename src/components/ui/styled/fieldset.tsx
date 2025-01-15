@@ -1,10 +1,10 @@
 'use client'
-import type { Assign, PolymorphicProps } from '@ark-ui/react'
-import { ark } from '@ark-ui/react/factory'
-import { Fieldset } from '@ark-ui/react/fieldset'
-import { type FieldsetVariantProps, fieldset } from 'styled-system/recipes'
-import type { ComponentProps, HTMLStyledProps } from 'styled-system/types'
-import { createStyleContext } from './utils/create-style-context'
+import type {Assign, PolymorphicProps} from '@ark-ui/react'
+import {ark} from '@ark-ui/react/factory'
+import {Fieldset} from '@ark-ui/react/fieldset'
+import {type FieldsetVariantProps, fieldset } from 'styled-system/recipes'
+import type {ComponentProps, HTMLStyledProps} from 'styled-system/types'
+import {createStyleContext} from './utils/create-style-context'
 
 const { withProvider, withContext } = createStyleContext(fieldset)
 

@@ -1,6 +1,6 @@
 "use client";
 import { css } from "@/styled-system/css";
-import { BookUser, Boxes, PenTool, Presentation } from "lucide-react";
+import { BookUser, Boxes, Presentation } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Icon } from "~/components/ui/styled/icon";
@@ -26,17 +26,17 @@ export const Navbar = () => {
                     gap: "8px",
                 })}
             >
-                <Link href={"/blog"} className={linkStyle}>
-                    <Icon
-                        className={css({
-                            width: "24px",
-                            height: "24px",
-                        })}
-                    >
-                        <PenTool />
-                    </Icon>
-                    <div className={linkContentStyle}>書いたぶろぐ</div>
-                </Link>
+                {/*<Link href={"/blog"} className={linkStyle}>*/}
+                {/*    <Icon*/}
+                {/*        className={css({*/}
+                {/*            width: "24px",*/}
+                {/*            height: "24px",*/}
+                {/*        })}*/}
+                {/*    >*/}
+                {/*        <PenTool />*/}
+                {/*    </Icon>*/}
+                {/*    <div className={linkContentStyle}>書いたぶろぐ</div>*/}
+                {/*</Link>*/}
                 <Link href={"/slides"} className={linkStyle}>
                     <Icon
                         className={css({
@@ -48,10 +48,7 @@ export const Navbar = () => {
                     </Icon>
                     <div className={linkContentStyle}>つくったスライド</div>
                 </Link>
-                <Link
-                    href={"/src/app/(my-app)/(header)/products"}
-                    className={linkStyle}
-                >
+                <Link href={"/products"} className={linkStyle}>
                     <Icon
                         className={css({
                             width: "24px",
@@ -62,7 +59,7 @@ export const Navbar = () => {
                     </Icon>
                     <div className={linkContentStyle}>作ったもの</div>
                 </Link>
-                <Link href={"/about"} className={linkStyle}>
+                <Link href={"/about-me"} className={linkStyle}>
                     <Icon
                         className={css({
                             width: "24px",
